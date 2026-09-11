@@ -4,7 +4,6 @@ from flask import Flask
 import telebot
 from yt_dlp import YoutubeDL
 
-# قراءة التوكن من متغيرات البيئة بأمان تام
 TOKEN = os.environ.get("TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
@@ -44,7 +43,10 @@ def download_youtube(message):
         "outtmpl": "downloads/%(id)s.%(ext)s",
         "noplaylist": True,
         "max_filesize": 50 * 1024 * 1024,
-        "extractor-args": {"youtube": {"player-client": ["android", "web"]}},
+        "extractor-args": {"youtube": {"player-client": ["mweb", "android"]}},
+        "http_headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
     }
 
     try:
