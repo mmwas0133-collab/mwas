@@ -4,7 +4,7 @@ from flask import Flask
 import telebot
 from yt_dlp import YoutubeDL
 
-TOKEN = "8692270797:AAElm0YZIbcN8YD7rnvjLH566ZV2moTEQm4"
+TOKEN = "8692270797:AAElmOYZiBcNB8YD7rnvjLH566ZV2moTEQm4"
 bot = telebot.TeleBot(TOKEN)
 
 app = Flask("")
@@ -23,7 +23,7 @@ def keep_alive():
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "أهلاً بك! دز رابط يوتيوب أو اسم الأغنية وسأقوم بتحميلها لك.")
+    bot.reply_to(message, "أهلاً بك! دز رابط يوتيوب وسأقوم بتحميله لك فوراً.")
 
 @bot.message_handler(func=lambda message: True)
 def download_youtube(message):
@@ -38,7 +38,7 @@ def download_youtube(message):
         "outtmpl": "downloads/%(id)s.%(ext)s",
         "noplaylist": True,
         "max_filesize": 50 * 1024 * 1024,
-        "extractor-args": {"youtube": {"player-client": ["mweb", "ios"]}},
+        "extractor-args": {"youtube": {"player-client": ["android", "web"]}},
     }
 
     try:
