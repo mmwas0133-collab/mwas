@@ -11,8 +11,6 @@ bot = telebot.TeleBot(TOKEN)
 
 # إنشاء سيرفر ويب وهمي لتبقى الاستضافة المجانية نشطة
 app = Flask("")
-
-
 @app.route("/")
 def home():
   return "Bot is running!"
@@ -26,7 +24,7 @@ def run_web():
 def send_welcome(message):
   bot.reply_to(
       message,
-      "أهلاً بك يا موسى! 🎵\nأرسل رابط فيديو يوتيوب للتحميل المباشر، أو اكتب"
+      "أهلاً بك يا ! 🎵\nأرسل رابط فيديو يوتيوب للتحميل المباشر، أو اكتب"
       " اسم الأغنية وسأعطيك قائمة لاختيارها.",
   )
 
@@ -41,12 +39,14 @@ def handle_media(message):
     bot.send_chat_action(chat_id, "upload_video")
     processing_msg = bot.send_message(chat_id, "جارٍ تحميل الفيديو من الرابط...")
 
-    ydl_opts = {
+        ydl_opts = {
         "format": "best[ext=mp4]/best",
         "outtmpl": "downloads/%(id)s.%(ext)s",
         "noplaylist": True,
         "max_filesize": 50 * 1024 * 1024,
+        'extractor-args': {'youtube': {'player-client': ['android', 'web']}},
     }
+
 
     try:
       os.makedirs("downloads", exist_ok=True)
