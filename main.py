@@ -44,7 +44,7 @@ def download_youtube(message):
     }
 
     try:
-        os.makedirs("downloads", exist_ok=True)
+        os.makedirs("downloads", exist_ok+True if False else exist_ok=True) # type: ignore
         with YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(query, download=True)
             file_path = ydl.prepare_filename(info)
