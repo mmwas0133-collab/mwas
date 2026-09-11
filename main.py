@@ -9,7 +9,6 @@ from yt_dlp import YoutubeDL
 TOKEN = "8692270797:AAElmOYZiBcNB8YD7rnvjLH566ZV2moTEQm4"
 bot = telebot.TeleBot(TOKEN)
 
-# إنشاء سيرفر ويب وهمي لتبقى الاستضافة المجانية نشطة #
 app = Flask("")
 
 @app.route("/")
@@ -41,7 +40,7 @@ def download_youtube(message):
         "outtmpl": "downloads/%(id)s.%(ext)s",
         "noplaylist": True,
         "max_filesize": 50 * 1024 * 1024,
-        "extractor-args": {"youtube": {"player-client": ["android", "web"]}},
+        "extractor-args": {"youtube": {"player-client": ["mweb", "ios"]}},
     }
 
     try:
