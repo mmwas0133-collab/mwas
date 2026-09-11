@@ -24,25 +24,19 @@ def download_youtube_video(message):
 
   bot.reply_to(message, "جاري معالجة الفيديو وتحميله، دقيقة واحدة...")
 
-  # إعدادات yt-dlp المتطورة لتخطي الحظر بدون كوكيز
+  # إعدادات yt-dlp المحدثة لعملاء iOS و TV لتخطي الحظر
   ydl_opts = {
-      # اختيار أفضل جودة متوفرة وتدمج الصوت مع الصورة
       "format": "bestvideo+bestaudio/best",
       "outtmpl": "downloaded_video.mp4",
       "noplaylist": True,
-      # ترويسات متصفح حقيقي لتخطي فلاتر الحماية
       "http_headers": {
           "User-Agent": (
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-              " (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+              "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) "
+              "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
           ),
-          "Accept": (
-              "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
-          ),
-          "Accept-Language": "en-US,en;q=0.9",
       },
-      # تمرير وسائط عملاء أندرويد وويب لخداع سيرفرات يوتيوب
-      "extractor_args": {"youtube": {"player_client": ["android", "web"]}},
+      # تحويل العميل إلى ios و tv لتخطي حظر الـ 403 نهائياً
+      "extractor_args": {"youtube": {"player_client": ["ios", "tv"]}},
   }
 
   try:
@@ -54,7 +48,7 @@ def download_youtube_video(message):
     with open(filename, "rb") as video_file:
       bot.send_video(message.chat.id, video_file)
 
-    # حذف الملف من السيرفر بعد الإرسال لتوفير المساحة
+    # حذف الملف من السيرفر بعد الإرسال
     if os.path.exists(filename):
       os.remove(filename)
 
