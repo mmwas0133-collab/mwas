@@ -3,7 +3,6 @@ import threading
 import time
 from flask import Flask
 import telebot
-from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
 from yt_dlp import YoutubeDL
 
 TOKEN = "8692270797:AAElmOYZiBcNB8YD7rnvjLH566ZV2moTEQm4"
@@ -44,7 +43,7 @@ def download_youtube(message):
     }
 
     try:
-        os.makedirs("downloads", exist_ok+True if False else exist_ok=True) # type: ignore
+        os.makedirs("downloads", exist_ok=True)
         with YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(query, download=True)
             file_path = ydl.prepare_filename(info)
