@@ -1,11 +1,10 @@
 import os
 import threading
-import time
 from flask import Flask
 import telebot
 from yt_dlp import YoutubeDL
 
-TOKEN = "8692270797:AAElmOYZiBcNB8YD7rnvjLH566ZV2moTEQm4"
+TOKEN = "8692270797:AAElm0YZIbcN8YD7rnvjLH566ZV2moTEQm4"
 bot = telebot.TeleBot(TOKEN)
 
 app = Flask("")
