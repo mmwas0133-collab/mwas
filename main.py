@@ -4,8 +4,14 @@ from flask import Flask
 import telebot
 from yt_dlp import YoutubeDL
 
-TOKEN = "8692270797:AAElmOYZiBcNB8YD7rnvjLH566ZV2moTEQm4"
+# قراءة التوكن من متغيرات البيئة بأمان تام
+TOKEN = os.environ.get("TOKEN")
 bot = telebot.TeleBot(TOKEN)
+
+try:
+    bot.remove_webhook()
+except Exception:
+    pass
 
 app = Flask("")
 
